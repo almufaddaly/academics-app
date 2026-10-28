@@ -23,7 +23,7 @@
       --border-light: #2e374c;
       --pill-active-bg: #ee5324;
       --pill-active-fg: #ffffff;
-      --glass-nav: rgba(22, 27, 38, 0.85);
+      --glass-nav: rgba(22, 27, 38, 0.88);
       --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
     }
 
@@ -37,7 +37,7 @@
       --border-light: #d6ddea;
       --pill-active-bg: #161924;
       --pill-active-fg: #ffffff;
-      --glass-nav: rgba(252, 253, 255, 0.88);
+      --glass-nav: rgba(252, 253, 255, 0.90);
       --shadow-card: 0 8px 24px rgba(18, 22, 33, 0.06);
     }
 
@@ -67,12 +67,11 @@
       min-height: 100vh;
       overflow-x: hidden;
       padding-top: calc(var(--safe-top) + 12px);
-      padding-bottom: calc(var(--safe-bottom) + 20px);
+      padding-bottom: calc(var(--safe-bottom) + 24px);
       user-select: none;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* View Transition API for Circular Theme Ripple */
     ::view-transition-old(root),
     ::view-transition-new(root) {
       animation: none;
@@ -82,7 +81,7 @@
     /* Main App Layout */
     .app-shell {
       display: grid;
-      grid-template-columns: 60px 1fr;
+      grid-template-columns: 60px minmax(0, 1fr);
       grid-template-rows: auto 1fr;
       gap: 16px;
       max-width: 1440px;
@@ -97,7 +96,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 10px;
     }
 
     .logo-pill {
@@ -109,6 +108,7 @@
       padding: 7px 16px 7px 10px;
       border-radius: 30px;
       box-shadow: var(--shadow-card);
+      flex-shrink: 0;
     }
 
     .logo-circle {
@@ -149,6 +149,7 @@
       padding: 8px 20px;
       border-radius: 30px;
       cursor: pointer;
+      white-space: nowrap;
       transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -160,20 +161,44 @@
     .top-right-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .sync-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      padding: 7px 12px;
+      border-radius: 24px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .sync-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
     }
 
     .theme-btn {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: var(--bg-card);
       color: var(--text-primary);
       border: 1px solid var(--border-light);
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 26px;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 12.5px;
+      white-space: nowrap;
       cursor: pointer;
       transition: transform 0.2s ease;
     }
@@ -221,7 +246,7 @@
       color: var(--text-muted);
     }
 
-    /* Left Floating Sidebar (iPad / Desktop) */
+    /* Left Sidebar */
     .left-sidebar {
       display: flex;
       flex-direction: column;
@@ -269,7 +294,7 @@
       stroke-linejoin: round;
     }
 
-    /* Content Area & Page Slide-Up Animation */
+    /* Content Area */
     .content-area {
       position: relative;
       min-width: 0;
@@ -279,7 +304,7 @@
       display: none;
       flex-direction: column;
       gap: 16px;
-      animation: pageSlideUp 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: pageSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .tab-page.active {
@@ -287,17 +312,11 @@
     }
 
     @keyframes pageSlideUp {
-      from {
-        opacity: 0;
-        transform: translate3d(0, 18px, 0);
-      }
-      to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-      }
+      from { opacity: 0; transform: translate3d(0, 16px, 0); }
+      to { opacity: 1; transform: translate3d(0, 0, 0); }
     }
 
-    /* Cards & Hover Lift */
+    /* Cards */
     .bento-card {
       background: var(--bg-card);
       border: 1px solid var(--border-light);
@@ -354,7 +373,7 @@
       flex-wrap: wrap;
     }
 
-    /* Overview Grid */
+    /* Overview Grids */
     .overview-top-grid {
       display: grid;
       grid-template-columns: 1.05fr 1fr 1fr;
@@ -363,7 +382,7 @@
 
     .overview-bottom-grid {
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 380px minmax(0, 1fr);
       gap: 16px;
     }
 
@@ -381,6 +400,7 @@
       border-radius: 14px;
       font-size: 11px;
       font-weight: 700;
+      white-space: nowrap;
     }
 
     .badge-green { background: rgba(16, 168, 112, 0.16); color: #34d399; }
@@ -397,7 +417,7 @@
 
     .mini-courses-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
       margin-top: 8px;
     }
@@ -430,7 +450,6 @@
       position: relative;
       overflow: hidden;
       border: 1px solid var(--border-light);
-      transition: transform 0.25s ease;
     }
 
     .metric-tile.orange-grad {
@@ -493,24 +512,56 @@
       transition: width 0.75s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* Inputs & Buttons */
-    .form-grid {
+    /* ==================== RESPONSIVE FORM GRIDS (Fixes iPad & iPhone Overlap) ==================== */
+    .form-grid-tasks {
       display: grid;
-      grid-template-columns: 2fr 1.4fr 1fr 1fr 1.1fr auto;
-      gap: 10px;
+      grid-template-columns: 1.8fr 1.4fr 1fr 1fr 1.2fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .form-grid-term {
+      display: grid;
+      grid-template-columns: 1.5fr 1.1fr 1.15fr 1.15fr auto auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .form-grid-sched {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr 2fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .courses-top-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .form-grid-courses {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 0.9fr 1.1fr 1.2fr auto;
+      gap: 12px;
       align-items: end;
     }
 
     .field-group {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
+      min-width: 0; /* Prevents iOS date inputs from overflowing grid cells */
     }
 
     .field-label {
       font-size: 12px;
       font-weight: 700;
       color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .modern-input, .modern-select {
@@ -518,12 +569,23 @@
       color: var(--text-primary);
       border: 1px solid var(--border-light);
       border-radius: 13px;
-      padding: 9px 12px;
+      padding: 0 12px;
+      height: 40px;
       font-size: 13px;
       font-weight: 600;
       outline: none;
       width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      display: block;
+      -webkit-appearance: none;
+      appearance: none;
       transition: border-color 0.2s ease;
+    }
+
+    input[type="date"].modern-input {
+      line-height: 38px;
+      padding-right: 8px;
     }
 
     .modern-input:focus, .modern-select:focus {
@@ -533,7 +595,8 @@
     .pill-btn {
       border: none;
       border-radius: 24px;
-      padding: 9px 18px;
+      height: 40px;
+      padding: 0 18px;
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
@@ -554,7 +617,7 @@
     .btn-subtle { background: var(--bg-subtle); color: var(--text-primary); border: 1px solid var(--border-light); }
     .btn-rose { background: var(--accent-rose); color: #fff; }
 
-    /* Horizontal Snap Columns for Coursework & Kanban */
+    /* Horizontal Snap Columns */
     .columns-scroll {
       display: grid;
       grid-auto-flow: column;
@@ -619,7 +682,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 6px;
+      gap: 8px;
     }
 
     .card-title {
@@ -649,10 +712,12 @@
     /* Tables */
     .table-wrap {
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     table {
       width: 100%;
+      min-width: 620px;
       border-collapse: collapse;
       text-align: left;
       font-size: 13px;
@@ -663,6 +728,7 @@
       color: var(--text-muted);
       font-weight: 700;
       padding: 10px 12px;
+      white-space: nowrap;
     }
 
     td {
@@ -677,9 +743,10 @@
     /* Weekly Calendar Grid */
     .week-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(200px, 1fr));
+      grid-template-columns: repeat(5, minmax(210px, 1fr));
       gap: 12px;
       overflow-x: auto;
+      padding-bottom: 4px;
     }
 
     /* Custom In-App Modal */
@@ -753,19 +820,32 @@
       fill: none;
     }
 
-    /* Responsive Breakpoints for iPad & iPhone */
-    @media (max-width: 1100px) {
+    /* ==================== iPad Landscape & Portrait Breakpoint ==================== */
+    @media (max-width: 1220px) {
       .overview-top-grid {
         grid-template-columns: 1fr 1fr;
       }
       .overview-bottom-grid {
         grid-template-columns: 1fr;
       }
-      .form-grid {
-        grid-template-columns: 1fr 1fr;
+      .form-grid-tasks {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .form-grid-term {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .form-grid-sched {
+        grid-template-columns: 1fr 1fr 1.5fr auto;
+      }
+      .courses-top-layout {
+        grid-template-columns: 1fr;
+      }
+      .form-grid-courses {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
+    /* ==================== iPhone Breakpoint ==================== */
     @media (max-width: 820px) {
       body {
         padding-bottom: calc(var(--safe-bottom) + 84px);
@@ -783,8 +863,25 @@
       .overview-top-grid {
         grid-template-columns: 1fr;
       }
-      .form-grid {
-        grid-template-columns: 1fr;
+      .form-grid-tasks,
+      .form-grid-term,
+      .form-grid-sched,
+      .form-grid-courses {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .form-grid-tasks > .field-group:first-child,
+      .form-grid-term > .field-group:first-child,
+      .form-grid-sched > .field-group:nth-child(3),
+      .form-grid-courses > .field-group:nth-child(2),
+      .form-grid-courses > .field-group:nth-child(5) {
+        grid-column: 1 / -1;
+      }
+      .form-grid-tasks > button,
+      .form-grid-sched > button,
+      .form-grid-courses > button {
+        grid-column: 1 / -1;
+        width: 100%;
       }
     }
   </style>
@@ -807,9 +904,13 @@
       </nav>
 
       <div class="top-right-actions">
+        <div class="sync-pill" onclick="pullFromCloud(true)" title="Tap to force sync with Firebase Cloud">
+          <span class="sync-dot" id="syncDot"></span>
+          <span id="syncStatusText">Synced</span>
+        </div>
         <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeWithRipple(event)">
           <span id="themeIcon">☀️</span>
-          <span id="themeText">Light Mode</span>
+          <span id="themeText">Light</span>
         </button>
         <div class="profile-pill">
           <div class="avatar-circle">A</div>
@@ -874,8 +975,8 @@
             </div>
             <div class="big-num" id="ovGpaValue">0.00 / 4.00</div>
             <div style="display:flex; gap:8px; align-items:center; margin-bottom:12px;">
-              <span class="badge badge-indigo">Live 4.0 Scale</span>
-              <span style="font-size:11px; color:var(--text-muted);">synced with your courses</span>
+              <span class="badge badge-indigo">Live Cloud Sync</span>
+              <span style="font-size:11px; color:var(--text-muted);">synced across iPhone, iPad & PC</span>
             </div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
               <button class="pill-btn btn-indigo" onclick="switchTab(1, 'Assignments')">+ New Assignment</button>
@@ -934,7 +1035,7 @@
             <div class="top-accent" style="background: var(--accent-orange);"></div>
             <div class="card-top-row">
               <span style="font-weight:700; font-size:15px;" id="ovTermTitle">Semester Countdown</span>
-              <button class="pill-btn btn-subtle" style="padding:5px 12px; font-size:11px;" onclick="switchTab(2, 'Calendar')">📅 Term Dates</button>
+              <button class="pill-btn btn-subtle" style="height:32px; padding:0 12px; font-size:11px;" onclick="switchTab(2, 'Calendar')">📅 Term Dates</button>
             </div>
             <div class="striped-bar-track">
               <div class="striped-bar-fill" id="ovTermBarFill"></div>
@@ -978,7 +1079,7 @@
       <section class="tab-page" id="page-Assignments">
         <div class="bento-card">
           <div class="top-accent" style="background: var(--accent-orange);"></div>
-          <div class="form-grid">
+          <div class="form-grid-tasks">
             <div class="field-group">
               <label class="field-label">1. Title</label>
               <input type="text" class="modern-input" id="taskTitleInput" placeholder="e.g., Major 1 Exam, ER Diagram..." />
@@ -1050,7 +1151,7 @@
       <section class="tab-page" id="page-Calendar">
         <div class="bento-card">
           <div class="top-accent" style="background: var(--accent-orange);"></div>
-          <div class="form-grid" style="grid-template-columns: 1.5fr 1.2fr 1.1fr 1.1fr auto auto;">
+          <div class="form-grid-term">
             <div class="field-group">
               <label class="field-label">Active Semester Term</label>
               <select class="modern-select" id="termSelectCombo" onchange="handleSwitchActiveTerm()"></select>
@@ -1074,7 +1175,7 @@
 
         <div class="bento-card">
           <div class="top-accent" style="background: var(--accent-indigo);"></div>
-          <div class="form-grid" style="grid-template-columns: 1fr 1.2fr 2fr auto;">
+          <div class="form-grid-sched">
             <div class="field-group">
               <label class="field-label">Day of Week</label>
               <select class="modern-select" id="schedDaySelect">
@@ -1107,8 +1208,8 @@
       <section class="tab-page" id="page-Courses">
         <div class="bento-card">
           <div class="top-accent" style="background: var(--accent-indigo);"></div>
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-            <div class="form-grid" style="flex:1; grid-template-columns: 1fr 1.6fr 0.8fr 1fr 1.4fr auto;">
+          <div class="courses-top-layout">
+            <div class="form-grid-courses">
               <div class="field-group">
                 <label class="field-label">Course Code</label>
                 <input type="text" class="modern-input" id="courseCodeInput" placeholder="e.g., CS101" />
@@ -1149,9 +1250,9 @@
               <button class="pill-btn btn-orange" onclick="handleAddCourse()">+ Register</button>
             </div>
 
-            <div style="background:linear-gradient(135deg, var(--accent-indigo), var(--accent-purple)); padding:14px 22px; border-radius:18px; color:#fff; min-width:210px;">
-              <div style="font-size:19px; font-weight:800;" id="coursesPageGpa">GPA: 0.00 / 4.00</div>
-              <div style="font-size:12px; opacity:0.9;" id="coursesPageHours">Total Credits: 0 hrs</div>
+            <div style="background:linear-gradient(135deg, var(--accent-indigo), var(--accent-purple)); padding:16px 22px; border-radius:18px; color:#fff; text-align:left;">
+              <div style="font-size:20px; font-weight:800;" id="coursesPageGpa">GPA: 0.00 / 4.00</div>
+              <div style="font-size:12px; opacity:0.9; margin-top:2px;" id="coursesPageHours">Total Credits: 0 hrs</div>
             </div>
           </div>
         </div>
@@ -1201,7 +1302,7 @@
     </button>
   </nav>
 
-  <!-- Custom In-App Edit Modal (For Tasks & Courses) -->
+  <!-- Custom In-App Edit Modal -->
   <div class="modal-backdrop" id="editModalBackdrop">
     <div class="modal-box">
       <div class="top-accent" style="background: var(--accent-orange);"></div>
@@ -1214,11 +1315,13 @@
   </div>
 
   <script>
-    // --- Palette & State (Synced with LocalStorage) ---
+    // --- Firebase Realtime Cloud Database Endpoint ---
+    const FIREBASE_URL = "https://academics-sync-default-rtdb.firebaseio.com/academics_workspace.json";
     const PALETTE = ['#4f6bff', '#ee5324', '#10a870', '#8b5cf6', '#ea8c12', '#ec3a56'];
     const WEEK_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
 
     let state = JSON.parse(localStorage.getItem('academics_pwa_state')) || {
+      lastUpdated: 0,
       courses: [
         { code: 'BUS101', name: 'Introduction to BUS', hours: 3, grade: 'A+', exams: '2026-10-29' },
         { code: 'CS101', name: 'Introduction to Programming', hours: 4, grade: 'In Progress', exams: '2026-10-31' },
@@ -1239,14 +1342,69 @@
       ]
     };
 
-    function saveState() {
-      localStorage.setItem('academics_pwa_state', JSON.stringify(state));
+    function setSyncBadge(status, color) {
+      const dot = document.getElementById('syncDot');
+      const txt = document.getElementById('syncStatusText');
+      if (dot && txt) {
+        dot.style.background = color;
+        txt.style.color = color;
+        txt.textContent = status;
+      }
     }
 
-    // Set default date input to today
+    // Push local state to Firebase Cloud
+    async function pushToCloud() {
+      state.lastUpdated = Date.now();
+      localStorage.setItem('academics_pwa_state', JSON.stringify(state));
+      setSyncBadge('Syncing...', '#ea8c12');
+      try {
+        const res = await fetch(FIREBASE_URL, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(state)
+        });
+        if (res.ok) {
+          setSyncBadge('Cloud Synced', '#10a870');
+        } else {
+          setSyncBadge('Sync Error', '#ec3a56');
+        }
+      } catch (err) {
+        setSyncBadge('Offline', '#8e9cb2');
+      }
+    }
+
+    // Pull latest state from Firebase Cloud
+    async function pullFromCloud(animate = false) {
+      try {
+        const res = await fetch(FIREBASE_URL);
+        if (!res.ok) return;
+        const cloudData = await res.json();
+        if (!cloudData) {
+          // Initialize cloud database on first run
+          await pushToCloud();
+          return;
+        }
+        if ((cloudData.lastUpdated || 0) > (state.lastUpdated || 0)) {
+          state = {
+            lastUpdated: cloudData.lastUpdated || Date.now(),
+            courses: cloudData.courses || [],
+            tasks: cloudData.tasks || [],
+            terms: cloudData.terms || [],
+            activeTermIndex: cloudData.activeTermIndex || 0,
+            schedule: cloudData.schedule || []
+          };
+          localStorage.setItem('academics_pwa_state', JSON.stringify(state));
+          renderAllDOM(animate);
+        }
+        setSyncBadge('Cloud Synced', '#10a870');
+      } catch (err) {
+        setSyncBadge('Offline', '#8e9cb2');
+      }
+    }
+
     document.getElementById('taskDueDateInput').value = new Date().toISOString().split('T')[0];
 
-    // --- 1. Circular Ripple Theme Transition (60/120fps) ---
+    // --- 1. Circular Ripple Theme Transition ---
     function toggleThemeWithRipple(event, forcedTheme = null) {
       const root = document.documentElement;
       const current = root.getAttribute('data-theme');
@@ -1260,7 +1418,7 @@
       const applyTheme = () => {
         root.setAttribute('data-theme', next);
         document.getElementById('themeIcon').textContent = next === 'dark' ? '☀️' : '🌙';
-        document.getElementById('themeText').textContent = next === 'dark' ? 'Light Mode' : 'Dark Mode';
+        document.getElementById('themeText').textContent = next === 'dark' ? 'Light' : 'Dark';
         document.getElementById('sideSunBtn').classList.toggle('active', next === 'light');
         document.getElementById('sideMoonBtn').classList.toggle('active', next === 'dark');
       };
@@ -1279,7 +1437,7 @@
       });
     }
 
-    // --- 2. Tab Navigation with Slide & Count-Up ---
+    // --- 2. Tab Navigation ---
     function switchTab(index, tabName) {
       document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
       document.getElementById('page-' + tabName).classList.add('active');
@@ -1288,7 +1446,7 @@
       document.querySelectorAll('.side-nav').forEach((b, i) => b.classList.toggle('active', i === index));
       document.querySelectorAll('.mobile-nav-item').forEach((b, i) => b.classList.toggle('active', i === index));
 
-      refreshAllUI(true);
+      renderAllDOM(true);
     }
 
     // --- 3. 4.00 Scale GPA Calculation ---
@@ -1312,7 +1470,7 @@
     // --- 4. Smooth Count-Up Animation Engine ---
     function animateNumbers(targetGpa, targetPending, targetExams, targetDone, targetCredits, targetPct) {
       const start = performance.now();
-      const duration = 620;
+      const duration = 600;
 
       function frame(now) {
         const raw = Math.min(1, (now - start) / duration);
@@ -1332,11 +1490,13 @@
       requestAnimationFrame(frame);
     }
 
-    // --- 5. Master UI Refresh ---
-    function refreshAllUI(animate = false) {
-      saveState();
+    // --- 5. Master UI Render & Sync ---
+    function saveAndSync(animate = false) {
+      renderAllDOM(animate);
+      pushToCloud();
+    }
 
-      // Populate Registered Course Dropdown
+    function renderAllDOM(animate = false) {
       const courseSelect = document.getElementById('taskCourseSelect');
       const prevCourse = courseSelect.value;
       courseSelect.innerHTML = '';
@@ -1352,7 +1512,6 @@
       courseSelect.appendChild(genOpt);
       if (prevCourse) courseSelect.value = prevCourse;
 
-      // Metrics calculation
       const totalTasks = state.tasks.length;
       const doneTasks = state.tasks.filter(t => t.stage === 'Done').length;
       const pendingTasks = totalTasks - doneTasks;
@@ -1374,7 +1533,6 @@
         document.getElementById('ovCompletionBadge').textContent = 'Tasks: ' + Math.round(completionPct) + '%';
       }
 
-      // Mini Courses in Overview
       document.getElementById('ovCoursesCountLabel').textContent = `Registered Courses (${state.courses.length}) | Total ${totalCredits} Credit Hours`;
       const miniGrid = document.getElementById('ovMiniCoursesGrid');
       miniGrid.innerHTML = '';
@@ -1389,7 +1547,6 @@
           </div>`;
       });
 
-      // Bar Chart
       const chart = document.getElementById('ovBarChart');
       chart.innerHTML = '';
       const shortDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
@@ -1405,13 +1562,9 @@
           </div>`;
       });
 
-      // Term Countdown
       renderTermsAndCalendar();
-      // Overview Table
       renderOverviewTable();
-      // Course Columns & Kanban
       renderCourseColumnsAndKanban();
-      // Courses Table
       renderCoursesTable();
     }
 
@@ -1455,7 +1608,7 @@
             </div>
             <span class="badge" style="background:${accent}25; color:${accent};">${items.length} items</span>
           </div>
-          <div class="col-items-list" id="col-${course.code}"></div>`;
+          <div class="col-items-list"></div>`;
         container.appendChild(colDiv);
 
         const listEl = colDiv.querySelector('.col-items-list');
@@ -1466,7 +1619,6 @@
         }
       });
 
-      // Kanban Columns
       ['Not Started', 'In Progress', 'Done'].forEach(stage => {
         const el = document.getElementById('kanban-' + stage.replace(' ', ''));
         el.innerHTML = '';
@@ -1580,13 +1732,13 @@
           if (!e.target.closest('button')) openEditCourseModal(idx);
         };
         tr.innerHTML = `
-          <td style="font-weight:800;">${c.code}</td>
-          <td>${c.name}</td>
-          <td>${c.hours} hrs</td>
-          <td><span class="badge badge-indigo">${c.grade}</span></td>
-          <td>${gp >= 0 ? gp.toFixed(2) : '—'}</td>
-          <td>${c.exams || 'No dates set'}</td>
-          <td>
+          <td style="font-weight:800; white-space:nowrap;">${c.code}</td>
+          <td style="white-space:nowrap;">${c.name}</td>
+          <td style="white-space:nowrap;">${c.hours} hrs</td>
+          <td style="white-space:nowrap;"><span class="badge badge-indigo">${c.grade}</span></td>
+          <td style="white-space:nowrap;">${gp >= 0 ? gp.toFixed(2) : '—'}</td>
+          <td style="white-space:nowrap;">${c.exams || 'No dates set'}</td>
+          <td style="white-space:nowrap;">
             <button class="mini-icon-btn" onclick="openEditCourseModal(${idx})">✎</button>
             <button class="mini-icon-btn" style="color:var(--accent-rose);" onclick="deleteCourse(${idx})">✕</button>
           </td>`;
@@ -1613,14 +1765,14 @@
         stage: category === 'Task' ? 'Not Started' : 'In Progress'
       });
       document.getElementById('taskTitleInput').value = '';
-      refreshAllUI(true);
+      saveAndSync(true);
     }
 
     function toggleTaskDone(id) {
       const t = state.tasks.find(x => x.id === id);
       if (t) {
         t.stage = t.stage === 'Done' ? 'In Progress' : 'Done';
-        refreshAllUI(false);
+        saveAndSync(false);
       }
     }
 
@@ -1630,13 +1782,13 @@
       if (t) {
         const nextIdx = Math.max(0, Math.min(2, stages.indexOf(t.stage) + dir));
         t.stage = stages[nextIdx];
-        refreshAllUI(false);
+        saveAndSync(false);
       }
     }
 
     function deleteTask(id) {
       state.tasks = state.tasks.filter(x => x.id !== id);
-      refreshAllUI(false);
+      saveAndSync(false);
     }
 
     function openEditTaskModal(id) {
@@ -1682,7 +1834,7 @@
         t.stage = document.getElementById('mStage').value;
       }
       closeModal();
-      refreshAllUI(false);
+      saveAndSync(false);
     }
 
     function handleAddCourse() {
@@ -1696,7 +1848,7 @@
       state.courses.push({ code, name, hours, grade, exams });
       document.getElementById('courseCodeInput').value = '';
       document.getElementById('courseNameInput').value = '';
-      refreshAllUI(true);
+      saveAndSync(true);
     }
 
     function openEditCourseModal(idx) {
@@ -1724,12 +1876,12 @@
       state.courses[idx].grade = document.getElementById('mcGrade').value;
       state.courses[idx].exams = document.getElementById('mcExams').value.trim() || 'No dates set';
       closeModal();
-      refreshAllUI(true);
+      saveAndSync(true);
     }
 
     function deleteCourse(idx) {
       state.courses.splice(idx, 1);
-      refreshAllUI(true);
+      saveAndSync(true);
     }
 
     function handleAddTerm() {
@@ -1739,19 +1891,19 @@
       if (!name || !start || !end) return;
       state.terms.push({ name, start, end });
       state.activeTermIndex = state.terms.length - 1;
-      refreshAllUI(false);
+      saveAndSync(false);
     }
 
     function handleSwitchActiveTerm() {
       state.activeTermIndex = Number(document.getElementById('termSelectCombo').value);
-      refreshAllUI(false);
+      saveAndSync(false);
     }
 
     function handleDeleteTerm() {
       if (state.terms.length === 0) return;
       state.terms.splice(state.activeTermIndex, 1);
       state.activeTermIndex = Math.max(0, state.terms.length - 1);
-      refreshAllUI(false);
+      saveAndSync(false);
     }
 
     function handleAddScheduleEvent() {
@@ -1761,20 +1913,28 @@
       if (!title) return;
       state.schedule.push({ id: Date.now(), day, time, title });
       document.getElementById('schedTitleInput').value = '';
-      refreshAllUI(false);
+      saveAndSync(false);
     }
 
     function deleteScheduleEvent(id) {
       state.schedule = state.schedule.filter(s => s.id !== id);
-      refreshAllUI(false);
+      saveAndSync(false);
     }
 
     function closeModal() {
       document.getElementById('editModalBackdrop').classList.remove('open');
     }
 
-    // Initial Boot
-    window.addEventListener('DOMContentLoaded', () => refreshAllUI(true));
+    // Initial Boot + Live Cloud Sync Polling
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAllDOM(true);
+      pullFromCloud(false);
+      setInterval(() => pullFromCloud(false), 5000);
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') pullFromCloud(false);
+    });
   </script>
 </body>
 </html>
